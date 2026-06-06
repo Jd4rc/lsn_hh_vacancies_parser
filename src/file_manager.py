@@ -28,6 +28,13 @@ def build_filename(
         date:str,
         keywords: list[str],
 ) -> str:
+    """
+        Формирует имя JSON-файла на основе даты и ключевых слов.
+
+        :param date: Дата поиска вакансий.
+        :param keywords: Список ключевых слов запроса.
+        :return: Имя файла в формате YYYY-MM-DD_keyword1_keyword2.json.
+        """
     query_part = '_'.join(keywords)
 
     return f'{date}_{query_part}.json'
