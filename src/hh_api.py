@@ -7,15 +7,18 @@ def fetch_vacancies(
 ) -> list[dict]:
     url = 'https://api.hh.ru/vacancies'
 
-    params = {
-        'text': query,
-        'date_from': date,
-        'date_to':date,
-        'per_page': 50,
-        'page':0
+    headers = {
+        "User-Agent": "lsn_hh_vacancies_parser/1.0 (github.com/Jd4rc))",
     }
 
-    response = requests.get(url, params=params)
+    params = {
+        'text': query,
+        'per_page': 5,
+    }
+
+    response = requests.get(url, params=params, headers=headers, timeout=10)
     response.raise_for_status()
 
-    return response.json()['items']
+    data = response.json()
+
+    return data['items']
