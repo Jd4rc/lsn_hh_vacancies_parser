@@ -22,3 +22,21 @@ def fetch_vacancies(
     data = response.json()
 
     return data['items']
+
+
+def parse_vacancies(
+        data: dict,
+
+) -> list[dict]:
+    vacancies = []
+
+    for item in data['items']:
+        vacancies.append(
+            {
+                'name': item['name'],
+                'company': item['employer']['name'],
+                'url': item['alternative_url'],
+            }
+        )
+
+    return vacancies
