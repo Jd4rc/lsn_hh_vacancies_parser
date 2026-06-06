@@ -23,3 +23,11 @@ def save_vacancies(
             ensure_ascii=False,
             indent=4,
         )
+
+def build_filename(
+        date:str,
+        keywords: list[str],
+) -> str:
+    query_part = '_'.join(keywords)
+
+    return f'{date}_{query_part}.json'
