@@ -1,5 +1,16 @@
 import requests
 
+def build_query(
+        keyword: list[str],
+) -> str:
+    """
+        Формирует поисковый запрос из списка ключевых слов.
+
+        :param keywords: Список ключевых слов.
+        :return: Строка поискового запроса.
+        """
+    return ' '.join(keyword)
+
 def fetch_vacancies(
         date:str,
         query: str,
