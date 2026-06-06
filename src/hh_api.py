@@ -36,7 +36,7 @@ def fetch_vacancies(
 
 
 def parse_vacancies(
-        data: dict,
+        data: list[dict],
 
 ) -> list[dict]:
     vacancies = []
