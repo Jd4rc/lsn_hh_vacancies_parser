@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from src.logger import logger
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -16,6 +17,8 @@ def save_vacancies(
        """
     file_path = BASE_DIR / 'data' / filename
 
+    logger.info('Saving vacancies to file', file_path)
+
     with open(file_path, 'w', encoding='utf-8') as file:
         json.dumps(
             vacancies,
@@ -23,6 +26,8 @@ def save_vacancies(
             ensure_ascii=False,
             indent=4,
         )
+
+    logger.info('Successfully saved %s vacancies', len(vacancies))
 
 def build_filename(
         date:str,
