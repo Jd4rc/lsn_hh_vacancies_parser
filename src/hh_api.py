@@ -1,4 +1,5 @@
 import requests
+from src.logger import logger
 
 def build_query(
         keyword: list[str],
@@ -16,6 +17,8 @@ def fetch_vacancies(
         query: str,
 
 ) -> list[dict]:
+    logger.info('Fetching vacancies: date=%s, query=%s', date, query)
+
     url = 'https://api.hh.ru/vacancies'
 
     headers = {
@@ -28,7 +31,12 @@ def fetch_vacancies(
     }
 
     response = requests.get(url, params=params, headers=headers, timeout=10)
+
+    logger.info("HH API response status: %s", response.status_code)
+
     response.raise_for_status()
+
+    logger.info("Vacancies fetched successfully")
 
     data = response.json()
 
